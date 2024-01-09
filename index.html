@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function validateInput() {
+            var isValid = true;
+            var errorMessage = "";
+        
+            // Validate Age
+            var age = document.forms["predictionForm"]["age"].value;
+            if (isNaN(age) || age < 0 || age > 120) {
+                errorMessage += "Invalid Age: Please enter a valid age between 0 and 120.\n";
+                isValid = false;
+            }
+        
+            // Validate Sex
+            var sex = document.forms["predictionForm"]["sex"].value.toUpperCase();
+            if (sex !== "M" && sex !== "F") {
+                errorMessage += "Invalid Sex: Please enter 'M' for Male or 'F' for Female.\n";
+                isValid = false;
+            }
+        
+            // Validate RestingBP
+            var restingBP = document.forms["predictionForm"]["restingBP"].value;
+            if (isNaN(restingBP) || restingBP < 50 || restingBP > 300) {
+                errorMessage += "Invalid RestingBP: Please enter a value between 50 and 300.\n";
+                isValid = false;
+            }
+        
+            // Validate Cholesterol
+            var cholesterol = document.forms["predictionForm"]["cholesterol"].value;
+            if (isNaN(cholesterol) || cholesterol < 50 || cholesterol > 600) {
+                errorMessage += "Invalid Cholesterol: Please enter a value between 50 and 600.\n";
+                isValid = false;
+            }
+        
+            // Validate FastingBS
+            var fastingBS = document.forms["predictionForm"]["fastingBS"].value;
+            if (fastingBS !== "0" && fastingBS !== "1") {
+                errorMessage += "Invalid FastingBS: Please enter '0' for No or '1' for Yes.\n";
+                isValid = false;
+            }
+        
+            // Validate RestingECG
+            var restingECG = document.forms["predictionForm"]["restingECG"].value.toUpperCase();
+            if (!["NORMAL", "ST", "LVH"].includes(restingECG)) {
+                errorMessage += "Invalid RestingECG: Please enter 'Normal', 'ST', or 'LVH'.\n";
+                isValid = false;
+            }
+        
+            // Validate MaxHR
+            var maxHR = document.forms["predictionForm"]["maxHR"].value;
+            if (isNaN(maxHR) || maxHR < 60 || maxHR > 220) {
+                errorMessage += "Invalid MaxHR: Please enter a value between 60 and 220.\n";
+                isValid = false;
+            }
+        
+            // Validate ExerciseAngina
+            var exerciseAngina = document.forms["predictionForm"]["exerciseAngina"].value.toUpperCase();
+            if (exerciseAngina !== "Y" && exerciseAngina !== "N") {
+                errorMessage += "Invalid ExerciseAngina: Please enter 'Y' for Yes or 'N' for No.\n";
+                isValid = false;
+            }
+        
+            // Validate Oldpeak
+            var oldpeak = document.forms["predictionForm"]["oldpeak"].value;
+            if (isNaN(oldpeak) || oldpeak < 0 || oldpeak > 10) {
+                errorMessage += "Invalid Oldpeak: Please enter a value between 0 and 10.\n";
+                isValid = false;
+            }
+        
+            // Validate ST_Slope
+            var stSlope = document.forms["predictionForm"]["stSlope"].value.toUpperCase();
+            if (!["UP", "FLAT", "DOWN"].includes(stSlope)) {
+                errorMessage += "Invalid ST_Slope: Please enter 'Up', 'Flat', or 'Down'.\n";
+                isValid = false;
+            }
+        
+            if (!isValid) {
+                alert(errorMessage);
+            }
+            return isValid;
+        }
+        </script>
+        
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Heart Disease Prediction Form</h1>
+        <form name="predictionForm" action="/predict" method="post" onsubmit="return validateInput()">
+            
+            <input type="number" name="age" placeholder="Enter Age" required>
+            <input type="text" name="sex" placeholder="Enter Sex (M/F)" required>
+            <input type="number" name="restingBP" placeholder="Enter RestingBP" required>
+            <input type="number" name="cholesterol" placeholder="Enter Cholesterol" required>
+            <input type="number" name="fastingBS" placeholder="Enter FastingBS (0 or 1)" required>
+            <input type="text" name="restingECG" placeholder="Enter RestingECG (Normal/ST/LVH)" required>
+            <input type="number" name="maxHR" placeholder="Enter MaxHR" required>
+            <input type="text" name="exerciseAngina" placeholder="Enter ExerciseAngina (Y/N)" required>
+            <input type="number" name="oldpeak" placeholder="Enter Oldpeak" required>
+            <input type="text" name="stSlope" placeholder="Enter ST_Slope (Up/Flat/Down)" required>
+            <button type="submit">Predict</button>
+            
+
+            <!-- Reset Button -->
+            <button type="reset" class="reset-button">Reset Form</button>
+        </form>
+    </div>
+    {% for message in get_flashed_messages() %}
+        <div class="flash-message">
+    {{ message }}
+    </div>
+{% endfor %}
+
+</body>
+</html>

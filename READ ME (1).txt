@@ -1,0 +1,35 @@
+READ ME --
+
+There are three folders in the zip file, Code Files - contains all the code files for the project, Datasets - contains all the dataset files for the diseases and Deploy - contains all the files required for the deployment.
+
+There are total four code files in the folder.
+
+RUNNING THE CODE FILES --
+
+(Use Google Colab)
+(While entering the values for prediction it is recommended to enter valid values as given in the dataset or else the prediction might not be accurate.)
+
+1. Chronic_Disease_Prediction.ipynb is the main code file for the project.
+2. uplaod all three datasets and the main code file on the google colab notebook.
+3. Run the codes one by one to predict the diseases.
+4. To see how we understand and studied the dataset upload the rest three files from the Code Files folder on the same google colab notebook.
+5. Run those codes to see the accuracies, correlation matrix, histograms and bar plots for each dataset.
+
+
+COMING TO THE DEPLOYMENT --
+
+For better user understanding we have also made the heart disease prediction form deployment where user can enter the values to predict the heart disease.
+(using html, css and javascript)
+
+To run this --
+
+1. Open the Deploy folder in vscode or use 'cd Deploy' to get in the Deploy folder.
+2. Before running the deployment make sure you are in the right folder and have 'flask app' installed, if not use 'pip install flask'.
+3. Now to run open terminal and type 'python app.py' and press enter.
+4. The form will be deployed, "Running on http://127.0.0.1:5000" - this will be shown.
+5. Copy the link and paste it in the browser and enter. The form will be displayed ready to predict the heart disease.
+
+Enter the inputs to predict.
+(make sure you have all the files in the Deploy folder)
+
+THANK YOU
